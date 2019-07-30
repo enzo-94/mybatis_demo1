@@ -1,7 +1,7 @@
 package cn.iyhome.mybatis.sqlsession;
 
 import cn.iyhome.mybatis.cfg.Configuration;
-import cn.iyhome.mybatis.sessionImp.SqlSessionFactoryImpl;
+import cn.iyhome.mybatis.sessionimp.SqlSessionFactoryImpl;
 import cn.iyhome.mybatis.utils.XMLConfigBuilder;
 
 import java.io.InputStream;

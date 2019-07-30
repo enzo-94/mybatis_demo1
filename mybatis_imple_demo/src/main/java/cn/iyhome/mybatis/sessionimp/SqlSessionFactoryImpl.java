@@ -1,4 +1,4 @@
-package cn.iyhome.mybatis.sessionImp;
+package cn.iyhome.mybatis.sessionimp;
 
 import cn.iyhome.mybatis.cfg.Configuration;
 import cn.iyhome.mybatis.sqlsession.SqlSession;
