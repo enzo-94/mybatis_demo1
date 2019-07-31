@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iyhome.dao.IUserDao">
+    <select id="findAllUser" resultType="user">
+        select id as userId, username, address, birthday, sex from user
+    </select>
+
+    <select id="findUser2Role" resultMap="User2Role">
+        SELECT u.id AS uid ,u.username ,r.ROLE_NAME,r.ROLE_DESC
+        FROM USER u
+        LEFT OUTER JOIN user_role ur ON u.ID=ur.UID
+        LEFT OUTER JOIN role r ON ur.RID=r.ID
+    </select>
+
+    <resultMap id="User2Role" type="user">
+        <id property="userId" column="uid"/>
+        <result property="username" column="username"/>
+        <collection property="roleList" javaType="Role">
+            <id property="roleId" column="id"/>
+            <result property="roleName" column="role_name"/>
+            <result property="roleDesc" column="role_desc"/>
+        </collection>
+    </resultMap>
+</mapper>
