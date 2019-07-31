@@ -50,4 +50,14 @@ public interface IUserDao {
      * 查找user
      */
     List<User> findUserByVo(QueryVo vo);
+
+    /**
+     * 根据条件查找
+     */
+    List<User> findUserByCondition(User user);
+
+    /**
+     * 根据ids集合查找数据
+     */
+    List<User> findUserByIds(QueryVo qv);
 }

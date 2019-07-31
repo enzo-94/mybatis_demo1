@@ -1,5 +1,6 @@
 package cn.iyhome.mybatis.cfg;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,7 +14,7 @@ public class Configuration {
     private String username;
     private String password;
 
-    private Map<String, Mapper> mappers;
+    private Map<String, Mapper> mappers = new HashMap<String,Mapper>();
 
     public Map<String, Mapper> getMappers() {
         return mappers;

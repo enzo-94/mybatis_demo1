@@ -11,6 +11,8 @@ import org.junit.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -131,11 +133,31 @@ public class CRUD {
         User user = new User();
         user.setUsername("%王%");
 
-        QueryVo qv = new QueryVo(user);
+        QueryVo qv = new QueryVo(user,null);
         List<User> usersUserByVo = users.findUserByVo(qv);
 
         for (User user1 : usersUserByVo) {
             System.out.println(user1);
         }
+    }
+
+    @Test
+    public void findUserByCondition(){
+        IUserDao userDao = sqlSession.getMapper(IUserDao.class);
+        User user = new User();
+        //user.setId(41);
+        user.setUsername("%王%");
+        List<User> users = userDao.findUserByCondition(user);
+        System.out.println(users);
+    }
+
+    @Test
+    public void findUserByIds(){
+        IUserDao userDao = sqlSession.getMapper(IUserDao.class);
+        List<Integer> ids = new ArrayList<Integer>();
+        Collections.addAll(ids, 41,42,43);
+        QueryVo qv = new QueryVo(null, ids);
+        List<User> users = userDao.findUserByIds(qv);
+        System.out.println(users);
     }
 }
