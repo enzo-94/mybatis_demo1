@@ -13,4 +13,6 @@ public interface IRoleDao {
     List<Role> findAllRole();
 
     List<Role> findRole2User();
+
+    List<Role> findRoleByCondition(Integer id);
 }

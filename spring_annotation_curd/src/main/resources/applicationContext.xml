@@ -1,0 +1,37 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--加载配置文件-->
+    <context:property-placeholder location="jdbc.properties"/>
+
+    <!--配置Service-->
+    <bean id="iAccountServiceImpl" class="cn.iyhome.service.impl.IAccountServiceImpl">
+        <!--注入Dao-->
+        <property name="iAccountDao" ref="iAccountDao"/>
+    </bean>
+    <!--配置Dao-->
+    <bean id="iAccountDao" class="cn.iyhome.dao.impl.IAccountDaoImpl">
+        <!--注入QueryRunner-->
+        <property name="runner" ref="queryRunner"/>
+    </bean>
+
+    <!--配置QueryRunner-->
+    <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">
+        <!--注入DataSource-->
+        <constructor-arg name="ds" ref="dataSource"/>
+    </bean>
+    <!--配置dataSource-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClass}"/>
+        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"/>
+        <property name="user" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+
+</beans>

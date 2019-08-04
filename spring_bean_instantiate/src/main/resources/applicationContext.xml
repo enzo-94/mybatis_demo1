@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--把对象的创建交给spring来管理-->
+    <!--方案一:
+        使用默认无参构造实例化对象,如果此时对象没有无参构造,那么无法创建对象-->
+    <bean id="accountService" class="cn.iyhome.service.imp.IAccountServiceImpl" scope="prototype" init-method="init" destroy-method="destory"/>
+
+    <!--采用静态工程类实例化的方式-->
+    <bean id = "accountServiceByStaticFac" class="cn.iyhome.factory.StaticFactory" factory-method="getAccountService"/>
+
+    <!--使用非静态工厂类实例化的方式-->
+    <bean id="Factory" class="cn.iyhome.factory.Factory" />
+    <bean id="accountServiceByFac" factory-bean="Factory" factory-method="getAccountService"/>
+</beans>

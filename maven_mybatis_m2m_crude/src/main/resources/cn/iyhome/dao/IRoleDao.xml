@@ -31,4 +31,15 @@
             <result property="birthday" column="birthday"/>
         </collection>
     </resultMap>
-        </mapper>
+
+    <select id="findRoleByCondition" resultMap="RoleMap" parameterType="int">
+        SELECT * FROM role  r RIGHT JOIN user_role ur ON r.id = ur.rid
+        WHERE ur.uid = #{uid}
+    </select>
+
+    <resultMap id="RoleMap" type="role" >
+        <id property="roleId" column="ID"/>
+        <result property="roleName" column="ROLE_NAME"/>
+        <result property="roleDesc" column="ROLE_DESC"/>
+    </resultMap>
+</mapper>

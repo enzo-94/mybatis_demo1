@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--把对象的创建交给spring来管理-->
+    <!--构造方法注入-->
+    <bean id="IAccountServiceImpl" class="cn.iyhome.service.impl.IAccountServiceImpl">
+        <constructor-arg name="username" value="yy"/>
+        <constructor-arg name="date" ref="now"/>
+    </bean>
+    <bean id="now" class="java.util.Date"/>
+
+    <!--set方法注入-->
+    <bean id="IAccountSerImpBySet" class="cn.iyhome.service.impl.IAccountServiceImpl">
+        <property name="username" value="小明" />
+        <property name="date" ref="now"/>
+    </bean>
+
+    <!--p名称空间注入-->
+    <bean id="IAccountSerImpByP" class="cn.iyhome.service.impl.IAccountServiceImpl"
+    p:username="小花" p:date-ref="now"/>
+
+
+    <bean id="ICollectionImp" class="cn.iyhome.service.impl.IAccountServiceCollection">
+        <property name="list">
+            <set>
+                <value>张三</value>
+                <value>20</value>
+                <ref bean="now"/>
+            </set>
+        </property>
+
+        <property name="arrs">
+            <set>
+                <value>张三</value>
+                <value>20</value>
+                <ref bean="now"/>
+            </set>
+        </property>
+
+        <property name="set">
+            <set>
+                <value>张三</value>
+                <value>20</value>
+                <ref bean="now"/>
+            </set>
+        </property>
+
+        <property name="map">
+            <map>
+                <entry key="key01" value="value01"/>
+                <entry key="key02" value="value02"/>
+                <entry key="key03" value-ref="now"/>
+            </map>
+        </property>
+
+        <property name="properties">
+            <props>
+                <prop key="driver">com.mysql.jdbc.Driver</prop>
+                <prop key="url">jdbc:mysql:///mybatisdata</prop>
+                <prop key="username">root</prop>
+                <prop key="password">root</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--注入Dao-->
+    <bean id = "IAccountServiceImpl2" class="cn.iyhome.service.impl.IAccountServiceImpl">
+        <property name="iaccountDao" ref="IAccountDao"/>
+    </bean>
+    <bean id="IAccountDao" class="cn.iyhome.dao.impl.IAccountDaoImpl"/>
+</beans>

@@ -73,6 +73,16 @@ public class CRUD {
         }
     }
 
+    /**测试根据用户ID查找角色*/
+    @Test
+    public void testFindRoleByCondition(){
+        IRoleDao iRoleDao = sqlSession.getMapper(IRoleDao.class);
+        List<Role> roles = iRoleDao.findRoleByCondition(41);
+        for (Role role : roles) {
+            System.out.println(role);
+        }
+    }
+
     @Test
     public void testFindRole2User() {
         IRoleDao roleDao = sqlSession.getMapper(IRoleDao.class);
@@ -86,9 +96,9 @@ public class CRUD {
     public void testFindUser2Role() {
         IUserDao userDao = sqlSession.getMapper(IUserDao.class);
         List<User> user2Roles = userDao.findUser2Role();
-        for (User user2Role : user2Roles) {
+        /*for (User user2Role : user2Roles) {
             System.out.println(user2Role);
-        }
+        }*/
     }
 }
 
